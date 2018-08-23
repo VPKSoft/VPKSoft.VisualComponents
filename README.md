@@ -1,5 +1,5 @@
 # VPKSoft.VisualComponents
-Windows.Forms component collection to be used with a HTPC software.
+Windows.Forms component collection to be used with a [HTPC](https://www.vpksoft.net/2-uncategorised/131-vamp) software.
 
 ## Graphics
 Many thanks to [openclipart.org](https://openclipart.org/) for the graphics as I have no talent in drawing.
