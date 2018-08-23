@@ -282,23 +282,11 @@ namespace VPKSoft.VideoBrowser
                 return; // .. so just return..
             }
 
-            if (VideoDetailIndex <= 0 || VideoDetailIndex <= 0)
-            {
-                pnPrevious.BackgroundImage = VisualUtils.UtilsMisc.MakeGrayscale3(_ImagePreviousButton);
-            }
-            else
-            {
-                pnPrevious.BackgroundImage = _ImagePreviousButton;
-            }
+            pnPrevious.BackgroundImage = VideoDetailIndex <= 0 || VideoDetailIndex <= 0
+                ? VisualUtils.UtilsMisc.MakeGrayscale3(_ImagePreviousButton)
+                : _ImagePreviousButton;
 
-            if (VideoDetailIndex >= Videos.Count)
-            {
-                pnNext.BackgroundImage = VisualUtils.UtilsMisc.MakeGrayscale3(_ImageNextButton);
-            }
-            else
-            {
-                pnNext.BackgroundImage = _ImageNextButton;
-            }
+            pnNext.BackgroundImage = VideoDetailIndex >= Videos.Count - 1 ? VisualUtils.UtilsMisc.MakeGrayscale3(_ImageNextButton) : _ImageNextButton;
 
 
             // if the video index was changed from the previous time..
