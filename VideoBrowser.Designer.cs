@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VideoBrowser));
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpInfo = new System.Windows.Forms.TableLayoutPanel();
+            this.pbPlayBackState = new System.Windows.Forms.PictureBox();
             this.pnPrevious = new System.Windows.Forms.Panel();
             this.pnNext = new System.Windows.Forms.Panel();
             this.pnLargeContainer = new System.Windows.Forms.Panel();
@@ -47,6 +50,8 @@
             this.pbCloseParentForm = new System.Windows.Forms.PictureBox();
             this.pbAddMovieRequest = new System.Windows.Forms.PictureBox();
             this.tlpMain.SuspendLayout();
+            this.tlpInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPlayBackState)).BeginInit();
             this.pnLargeContainer.SuspendLayout();
             this.tlpPreviewLarge.SuspendLayout();
             this.pnPreviewDescription.SuspendLayout();
@@ -71,6 +76,7 @@
             this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
             this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
             this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tlpMain.Controls.Add(this.tlpInfo, 0, 1);
             this.tlpMain.Controls.Add(this.pnPrevious, 0, 2);
             this.tlpMain.Controls.Add(this.pnNext, 6, 2);
             this.tlpMain.Controls.Add(this.pnLargeContainer, 1, 1);
@@ -84,30 +90,60 @@
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 68F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 1F));
-            this.tlpMain.Size = new System.Drawing.Size(951, 582);
+            this.tlpMain.Size = new System.Drawing.Size(982, 513);
             this.tlpMain.TabIndex = 0;
+            // 
+            // tlpInfo
+            // 
+            this.tlpInfo.ColumnCount = 1;
+            this.tlpInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpInfo.Controls.Add(this.pbPlayBackState, 0, 3);
+            this.tlpInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpInfo.Location = new System.Drawing.Point(0, 5);
+            this.tlpInfo.Margin = new System.Windows.Forms.Padding(0);
+            this.tlpInfo.Name = "tlpInfo";
+            this.tlpInfo.RowCount = 4;
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpInfo.Size = new System.Drawing.Size(49, 348);
+            this.tlpInfo.TabIndex = 7;
+            // 
+            // pbPlayBackState
+            // 
+            this.pbPlayBackState.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbPlayBackState.Location = new System.Drawing.Point(0, 258);
+            this.pbPlayBackState.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.pbPlayBackState.Name = "pbPlayBackState";
+            this.pbPlayBackState.Size = new System.Drawing.Size(49, 90);
+            this.pbPlayBackState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbPlayBackState.TabIndex = 3;
+            this.pbPlayBackState.TabStop = false;
             // 
             // pnPrevious
             // 
-            this.pnPrevious.BackgroundImage = global::VPKSoft.VisualComponents.Properties.Resources.backward_steelblue;
+            this.pnPrevious.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnPrevious.BackgroundImage")));
             this.pnPrevious.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pnPrevious.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnPrevious.Location = new System.Drawing.Point(6, 406);
+            this.pnPrevious.Location = new System.Drawing.Point(6, 359);
             this.pnPrevious.Margin = new System.Windows.Forms.Padding(6);
             this.pnPrevious.Name = "pnPrevious";
-            this.pnPrevious.Size = new System.Drawing.Size(35, 162);
+            this.pnPrevious.Size = new System.Drawing.Size(37, 141);
             this.pnPrevious.TabIndex = 0;
             this.pnPrevious.Click += new System.EventHandler(this.pnPrevious_Click);
             // 
             // pnNext
             // 
-            this.pnNext.BackgroundImage = global::VPKSoft.VisualComponents.Properties.Resources.forward_steelblue;
+            this.pnNext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnNext.BackgroundImage")));
             this.pnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pnNext.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnNext.Location = new System.Drawing.Point(908, 406);
+            this.pnNext.Location = new System.Drawing.Point(935, 359);
             this.pnNext.Margin = new System.Windows.Forms.Padding(6);
             this.pnNext.Name = "pnNext";
-            this.pnNext.Size = new System.Drawing.Size(37, 162);
+            this.pnNext.Size = new System.Drawing.Size(41, 141);
             this.pnNext.TabIndex = 1;
             this.pnNext.Click += new System.EventHandler(this.pnNext_Click);
             // 
@@ -118,10 +154,10 @@
             this.pnLargeContainer.Controls.Add(this.tlpPreviewLarge);
             this.pnLargeContainer.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnLargeContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnLargeContainer.Location = new System.Drawing.Point(50, 8);
+            this.pnLargeContainer.Location = new System.Drawing.Point(52, 8);
             this.pnLargeContainer.Name = "pnLargeContainer";
             this.pnLargeContainer.Padding = new System.Windows.Forms.Padding(6);
-            this.pnLargeContainer.Size = new System.Drawing.Size(507, 389);
+            this.pnLargeContainer.Size = new System.Drawing.Size(522, 342);
             this.pnLargeContainer.TabIndex = 4;
             this.pnLargeContainer.Click += new System.EventHandler(this.playVideoClick);
             // 
@@ -141,7 +177,7 @@
             this.tlpPreviewLarge.RowCount = 2;
             this.tlpPreviewLarge.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpPreviewLarge.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpPreviewLarge.Size = new System.Drawing.Size(495, 377);
+            this.tlpPreviewLarge.Size = new System.Drawing.Size(510, 330);
             this.tlpPreviewLarge.TabIndex = 3;
             // 
             // pnPreviewImage
@@ -153,7 +189,7 @@
             this.pnPreviewImage.Location = new System.Drawing.Point(6, 6);
             this.pnPreviewImage.Margin = new System.Windows.Forms.Padding(6);
             this.pnPreviewImage.Name = "pnPreviewImage";
-            this.pnPreviewImage.Size = new System.Drawing.Size(483, 345);
+            this.pnPreviewImage.Size = new System.Drawing.Size(498, 298);
             this.pnPreviewImage.TabIndex = 0;
             this.pnPreviewImage.Click += new System.EventHandler(this.playVideoClick);
             // 
@@ -164,11 +200,11 @@
             this.lbPreviewImage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbPreviewImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPreviewImage.ForeColor = System.Drawing.Color.White;
-            this.lbPreviewImage.Location = new System.Drawing.Point(0, 357);
+            this.lbPreviewImage.Location = new System.Drawing.Point(0, 310);
             this.lbPreviewImage.Margin = new System.Windows.Forms.Padding(0);
             this.lbPreviewImage.Name = "lbPreviewImage";
             this.lbPreviewImage.Padding = new System.Windows.Forms.Padding(6);
-            this.lbPreviewImage.Size = new System.Drawing.Size(495, 20);
+            this.lbPreviewImage.Size = new System.Drawing.Size(510, 20);
             this.lbPreviewImage.TabIndex = 1;
             this.lbPreviewImage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbPreviewImage.Click += new System.EventHandler(this.playVideoClick);
@@ -180,10 +216,10 @@
             this.pnPreviewDescription.Controls.Add(this.tlpDetailHolder);
             this.pnPreviewDescription.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnPreviewDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnPreviewDescription.Location = new System.Drawing.Point(563, 8);
+            this.pnPreviewDescription.Location = new System.Drawing.Point(580, 8);
             this.pnPreviewDescription.Name = "pnPreviewDescription";
             this.pnPreviewDescription.Padding = new System.Windows.Forms.Padding(6);
-            this.pnPreviewDescription.Size = new System.Drawing.Size(336, 389);
+            this.pnPreviewDescription.Size = new System.Drawing.Size(346, 342);
             this.pnPreviewDescription.TabIndex = 5;
             this.pnPreviewDescription.Click += new System.EventHandler(this.playVideoClick);
             // 
@@ -212,7 +248,7 @@
             this.tlpDetailHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tlpDetailHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
             this.tlpDetailHolder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tlpDetailHolder.Size = new System.Drawing.Size(324, 377);
+            this.tlpDetailHolder.Size = new System.Drawing.Size(334, 330);
             this.tlpDetailHolder.TabIndex = 4;
             // 
             // lbDescriptionCaption
@@ -224,7 +260,7 @@
             this.lbDescriptionCaption.Location = new System.Drawing.Point(6, 0);
             this.lbDescriptionCaption.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbDescriptionCaption.Name = "lbDescriptionCaption";
-            this.lbDescriptionCaption.Size = new System.Drawing.Size(312, 45);
+            this.lbDescriptionCaption.Size = new System.Drawing.Size(322, 39);
             this.lbDescriptionCaption.TabIndex = 4;
             this.lbDescriptionCaption.Text = "Description";
             this.lbDescriptionCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -235,11 +271,11 @@
             this.lbDescriptionValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbDescriptionValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDescriptionValue.ForeColor = System.Drawing.Color.White;
-            this.lbDescriptionValue.Location = new System.Drawing.Point(6, 51);
+            this.lbDescriptionValue.Location = new System.Drawing.Point(6, 45);
             this.lbDescriptionValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbDescriptionValue.Name = "lbDescriptionValue";
             this.tlpDetailHolder.SetRowSpan(this.lbDescriptionValue, 6);
-            this.lbDescriptionValue.Size = new System.Drawing.Size(312, 270);
+            this.lbDescriptionValue.Size = new System.Drawing.Size(322, 234);
             this.lbDescriptionValue.TabIndex = 7;
             this.lbDescriptionValue.Click += new System.EventHandler(this.playVideoClick);
             // 
@@ -249,10 +285,10 @@
             this.lbLengthCaptionAndValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbLengthCaptionAndValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLengthCaptionAndValue.ForeColor = System.Drawing.Color.White;
-            this.lbLengthCaptionAndValue.Location = new System.Drawing.Point(6, 327);
+            this.lbLengthCaptionAndValue.Location = new System.Drawing.Point(6, 285);
             this.lbLengthCaptionAndValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lbLengthCaptionAndValue.Name = "lbLengthCaptionAndValue";
-            this.lbLengthCaptionAndValue.Size = new System.Drawing.Size(312, 50);
+            this.lbLengthCaptionAndValue.Size = new System.Drawing.Size(322, 45);
             this.lbLengthCaptionAndValue.TabIndex = 3;
             this.lbLengthCaptionAndValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbLengthCaptionAndValue.Click += new System.EventHandler(this.playVideoClick);
@@ -262,10 +298,10 @@
             this.pnSplit1.BackColor = System.Drawing.Color.SteelBlue;
             this.pnSplit1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnSplit1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnSplit1.Location = new System.Drawing.Point(0, 45);
+            this.pnSplit1.Location = new System.Drawing.Point(0, 39);
             this.pnSplit1.Margin = new System.Windows.Forms.Padding(0);
             this.pnSplit1.Name = "pnSplit1";
-            this.pnSplit1.Size = new System.Drawing.Size(324, 6);
+            this.pnSplit1.Size = new System.Drawing.Size(334, 6);
             this.pnSplit1.TabIndex = 8;
             this.pnSplit1.Click += new System.EventHandler(this.playVideoClick);
             // 
@@ -274,10 +310,10 @@
             this.pnSplit2.BackColor = System.Drawing.Color.SteelBlue;
             this.pnSplit2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pnSplit2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnSplit2.Location = new System.Drawing.Point(0, 321);
+            this.pnSplit2.Location = new System.Drawing.Point(0, 279);
             this.pnSplit2.Margin = new System.Windows.Forms.Padding(0);
             this.pnSplit2.Name = "pnSplit2";
-            this.pnSplit2.Size = new System.Drawing.Size(324, 6);
+            this.pnSplit2.Size = new System.Drawing.Size(334, 6);
             this.pnSplit2.TabIndex = 9;
             this.pnSplit2.Click += new System.EventHandler(this.playVideoClick);
             // 
@@ -289,7 +325,7 @@
             this.tlpButtons.Controls.Add(this.pbCloseParentForm, 0, 0);
             this.tlpButtons.Controls.Add(this.pbAddMovieRequest, 0, 1);
             this.tlpButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpButtons.Location = new System.Drawing.Point(902, 5);
+            this.tlpButtons.Location = new System.Drawing.Point(929, 5);
             this.tlpButtons.Margin = new System.Windows.Forms.Padding(0);
             this.tlpButtons.Name = "tlpButtons";
             this.tlpButtons.RowCount = 4;
@@ -297,7 +333,7 @@
             this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpButtons.Size = new System.Drawing.Size(49, 395);
+            this.tlpButtons.Size = new System.Drawing.Size(53, 348);
             this.tlpButtons.TabIndex = 6;
             // 
             // pbDeleteMovie
@@ -305,11 +341,11 @@
             this.pbDeleteMovie.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbDeleteMovie.Image = global::VPKSoft.VisualComponents.Properties.Resources.Cancel;
+            this.pbDeleteMovie.Image = ((System.Drawing.Image)(resources.GetObject("pbDeleteMovie.Image")));
             this.pbDeleteMovie.Location = new System.Drawing.Point(0, 189);
             this.pbDeleteMovie.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.pbDeleteMovie.Name = "pbDeleteMovie";
-            this.pbDeleteMovie.Size = new System.Drawing.Size(49, 90);
+            this.pbDeleteMovie.Size = new System.Drawing.Size(53, 90);
             this.pbDeleteMovie.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbDeleteMovie.TabIndex = 3;
             this.pbDeleteMovie.TabStop = false;
@@ -320,11 +356,11 @@
             this.pbCloseParentForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbCloseParentForm.Image = global::VPKSoft.VisualComponents.Properties.Resources.exit;
+            this.pbCloseParentForm.Image = ((System.Drawing.Image)(resources.GetObject("pbCloseParentForm.Image")));
             this.pbCloseParentForm.Location = new System.Drawing.Point(0, 3);
             this.pbCloseParentForm.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.pbCloseParentForm.Name = "pbCloseParentForm";
-            this.pbCloseParentForm.Size = new System.Drawing.Size(49, 90);
+            this.pbCloseParentForm.Size = new System.Drawing.Size(53, 90);
             this.pbCloseParentForm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbCloseParentForm.TabIndex = 2;
             this.pbCloseParentForm.TabStop = false;
@@ -335,11 +371,11 @@
             this.pbAddMovieRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbAddMovieRequest.Image = global::VPKSoft.VisualComponents.Properties.Resources.add_something_steelblue;
+            this.pbAddMovieRequest.Image = ((System.Drawing.Image)(resources.GetObject("pbAddMovieRequest.Image")));
             this.pbAddMovieRequest.Location = new System.Drawing.Point(0, 96);
             this.pbAddMovieRequest.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.pbAddMovieRequest.Name = "pbAddMovieRequest";
-            this.pbAddMovieRequest.Size = new System.Drawing.Size(49, 90);
+            this.pbAddMovieRequest.Size = new System.Drawing.Size(53, 90);
             this.pbAddMovieRequest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbAddMovieRequest.TabIndex = 1;
             this.pbAddMovieRequest.TabStop = false;
@@ -353,9 +389,11 @@
             this.Controls.Add(this.tlpMain);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "VideoBrowser";
-            this.Size = new System.Drawing.Size(975, 606);
+            this.Size = new System.Drawing.Size(1006, 537);
             this.Resize += new System.EventHandler(this.VideoBrowser_Resize);
             this.tlpMain.ResumeLayout(false);
+            this.tlpInfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbPlayBackState)).EndInit();
             this.pnLargeContainer.ResumeLayout(false);
             this.tlpPreviewLarge.ResumeLayout(false);
             this.tlpPreviewLarge.PerformLayout();
@@ -389,5 +427,7 @@
         private System.Windows.Forms.PictureBox pbCloseParentForm;
         private System.Windows.Forms.PictureBox pbAddMovieRequest;
         private System.Windows.Forms.PictureBox pbDeleteMovie;
+        private System.Windows.Forms.TableLayoutPanel tlpInfo;
+        private System.Windows.Forms.PictureBox pbPlayBackState;
     }
 }

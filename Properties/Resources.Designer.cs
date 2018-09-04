@@ -193,6 +193,16 @@ namespace VPKSoft.VisualComponents.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap not_whole2 {
+            get {
+                object obj = ResourceManager.GetObject("not_whole2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap orange_star {
             get {
                 object obj = ResourceManager.GetObject("orange_star", resourceCulture);
@@ -273,9 +283,9 @@ namespace VPKSoft.VisualComponents.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tick {
+        internal static System.Drawing.Bitmap tick_steelblue {
             get {
-                object obj = ResourceManager.GetObject("tick", resourceCulture);
+                object obj = ResourceManager.GetObject("tick_steelblue", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -160,7 +160,7 @@ namespace VPKSoft.VisualListBox
             }
 
             // invalidate the previous mouse hover index only if there is something to invalidate
-            if (_mouseHoverIndexPrevious != -1 && _mouseHoverIndexPrevious != _mouseHoverIndex && _mouseHoverIndexPrevious <= Items.Count)
+            if (_mouseHoverIndexPrevious != -1 && _mouseHoverIndexPrevious != _mouseHoverIndex && _mouseHoverIndexPrevious < Items.Count)
             {
                 Invalidate(GetItemRectangle(_mouseHoverIndexPrevious));
             }

@@ -375,6 +375,23 @@ namespace VPKSoft.VideoBrowser
 
                     // display the video's length in hours and minutes..
                     lbLengthCaptionAndValue.Text = LengthCaption + " " + Videos[VideoDetailIndex].Duration.ToString(@"hh\:mm");
+
+                    // indicate the state of video playback..
+                    if (Videos[VideoDetailIndex].VideoPlaybackState == VideoPlaybackState.New)
+                    {
+                        // the video has never been played..
+                        pbPlayBackState.Image = ImagePlaybackNew;
+                    }
+                    else if (Videos[VideoDetailIndex].VideoPlaybackState == VideoPlaybackState.Somewhere)
+                    {
+                        // the video playback was stopped somewhere in the middle..
+                        pbPlayBackState.Image = ImagePlaybackMiddle;
+                    }
+                    else if (Videos[VideoDetailIndex].VideoPlaybackState == VideoPlaybackState.Played)
+                    {
+                        // the video was played to the end..
+                        pbPlayBackState.Image = ImagePlaybackWatched;
+                    }
                 }
             }
         }
@@ -406,6 +423,7 @@ namespace VPKSoft.VideoBrowser
             pbCloseParentForm.Height = pbCloseParentForm.Width;
             pbAddMovieRequest.Height = pbAddMovieRequest.Width;
             pbDeleteMovie.Height = pbDeleteMovie.Width;
+            pbPlayBackState.Height = pbPlayBackState.Width;
         }
 
         // the control was resized..
@@ -1118,6 +1136,30 @@ namespace VPKSoft.VideoBrowser
         [Category("Appearance")]
         [Browsable(true)]
         public static Image ImageNoVideoImage { get; set; } = VisualComponents.Properties.Resources.matt_icons_video_x_generic;
+
+        /// <summary>
+        /// Gets or sets the image for a video which hasn't been watched.
+        /// </summary>
+        [Description("Gets or sets the image for a video which hasn't been watched.")]
+        [Category("Appearance")]
+        [Browsable(true)]
+        public static Image ImagePlaybackNew { get; set; } = null;
+
+        /// <summary>
+        /// Gets or sets the image for a video which hasn't been watched to the end.
+        /// </summary>
+        [Description("Gets or sets the image for a video which hasn't been watched to the end.")]
+        [Category("Appearance")]
+        [Browsable(true)]
+        public static Image ImagePlaybackMiddle { get; set; } = VisualComponents.Properties.Resources.not_whole2;
+
+        /// <summary>
+        /// Gets or sets the image for a video which has been watched to the end.
+        /// </summary>
+        [Description("Gets or sets the image for a video which has been watched to the end.")]
+        [Category("Appearance")]
+        [Browsable(true)]
+        public static Image ImagePlaybackWatched { get; set; } = VisualComponents.Properties.Resources.tick_steelblue;
         #endregion
     }
 }

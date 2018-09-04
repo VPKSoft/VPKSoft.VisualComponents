@@ -56,6 +56,11 @@ namespace VPKSoft.VideoBrowser
         private Image _Image = null;
 
         /// <summary>
+        /// Gets or sets the state of the playback with the video before.
+        /// </summary>
+        public VideoPlaybackState VideoPlaybackState { get; set; } = VideoPlaybackState.New;
+
+        /// <summary>
         /// Gets or sets a still/poster image describing the video.
         /// </summary>
         public Image Image
@@ -65,6 +70,13 @@ namespace VPKSoft.VideoBrowser
                 // load the image from the file system cache directory if "conditions" are met..
                 if (ImageDumbed && ImageFileCache)
                 {
+                    // construct a full file name for the image..
+                    string imageFileName = Path.Combine(ImageFileCacheDir, ImageFileName);
+                    if (File.Exists(imageFileName)) // load the image if the file exists..
+                    {
+                        return Image.FromFile(imageFileName); // load the image..
+                    }
+
                     LoadDumpedImage();                    
                 }
                 return _Image ?? VideoBrowser.ImageNoVideoImage;
@@ -111,8 +123,11 @@ namespace VPKSoft.VideoBrowser
             {
                 if (_Image != null)
                 {
-                    // save the image..
-                    _Image.Save(Path.Combine(ImageFileCacheDir, ImageFileName));
+                    // save the image if it's not already saved..
+                    if (!File.Exists(Path.Combine(ImageFileCacheDir, ImageFileName)))
+                    {
+                        _Image.Save(Path.Combine(ImageFileCacheDir, ImageFileName));
+                    }
                 }
 
                 using (_Image) // dispose of the image..
@@ -174,9 +189,10 @@ namespace VPKSoft.VideoBrowser
         /// <param name="imageFileCache">if set to <c>true</c> the class uses file system for caching image files.</param>
         /// <param name="imageFileCacheDir">A full path to use for the image file cache.</param>
         /// <param name="image">A poster/still image which represents the video file. If set to null a web download is tried.</param>
+        /// <param name="videoPlaybackState">Indicates the state of how the video was interacted with before.</param>
         /// <returns>A TMDbDetailExt class instance containing the data from the given TMDbDetail class instance.</returns>
         public static TMDbDetailExt FromTMDbDetail(TMDbDetail detail, int duration, 
-            string fileNameFull, bool imageFileCache, string imageFileCacheDir, Image image)
+            string fileNameFull, bool imageFileCache, string imageFileCacheDir, Image image, VideoPlaybackState videoPlaybackState)
         {
             // create a new TMDbDetailExt class instance..
             TMDbDetailExt result = new TMDbDetailExt
@@ -229,6 +245,9 @@ namespace VPKSoft.VideoBrowser
                 result.Image = null;
             }
 
+            // set the previous playback state of the video..
+            result.VideoPlaybackState = videoPlaybackState;
+            
             // set the duration..
             result.Duration = TimeSpan.FromMilliseconds(duration);
 
@@ -254,6 +273,41 @@ namespace VPKSoft.VideoBrowser
         }
 
         /// <summary>
+        /// Determines whether the specified object is equal to the current object (almost).
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>
+        /// true if the specified object is equal to the current object; otherwise, false.
+        /// </returns>
+        public bool AlmostEquals(object obj)
+        {
+            if (obj == null || obj.GetType() != GetType())
+            {
+                return base.Equals(obj);
+            }
+            else
+            {
+                TMDbDetailExt detailExt = (TMDbDetailExt)obj;
+                return
+                    Description == detailExt.Description &&
+                    DetailDescription == detailExt.DetailDescription &&
+                    Duration == detailExt.Duration &&
+                    Episode == detailExt.Episode &&
+                    EpisodeID == detailExt.EpisodeID &&
+                    FileName == detailExt.FileName &&
+                    FileSize == detailExt.FileSize &&
+                    ID == detailExt.ID &&
+                    ImageFileCache == detailExt.ImageFileCache &&
+                    ImageFileCacheDir == detailExt.ImageFileCacheDir &&
+                    ImageFileName == detailExt.ImageFileName &&
+                    PosterOrStillURL == detailExt.PosterOrStillURL &&
+                    Season == detailExt.Season &&
+                    SeasonID == detailExt.SeasonID &&
+                    VideoPlaybackState == detailExt.VideoPlaybackState;
+            }
+        }
+
+        /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()
@@ -266,5 +320,26 @@ namespace VPKSoft.VideoBrowser
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// An enumeration to describe the state of how the video was interacted with before.
+    /// </summary>
+    public enum VideoPlaybackState
+    {
+        /// <summary>
+        /// The video was never played.
+        /// </summary>
+        New = 0,
+
+        /// <summary>
+        /// The video playback was stopped somewhere.
+        /// </summary>
+        Somewhere = 1,
+
+        /// <summary>
+        /// The video was played to the end.
+        /// </summary>
+        Played = 2
     }
 }
