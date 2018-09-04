@@ -11,7 +11,7 @@
     <iconUrl>https://www.vpksoft.net/site/VPKSoft.ico</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Bug fixes, additional features. Added ColorSlider control to the project.</releaseNotes>
+    <releaseNotes>Fixed erroneous positioning on a higher DPI setting.</releaseNotes>
     <copyright>Copyright © VPKSoft 2018</copyright>
     <tags>Windows.Forms component collection VPKSoft</tags>
   </metadata>
