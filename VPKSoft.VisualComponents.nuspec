@@ -11,7 +11,7 @@
     <iconUrl>https://www.vpksoft.net/site/VPKSoft.ico</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Adde drag &amp; drop support to ImageViewer class.</releaseNotes>
+    <releaseNotes>Added clean-up code for the drag &amp; drop support with the ImageViewer control.</releaseNotes>
     <copyright>Copyright © VPKSoft 2018</copyright>
     <tags>Windows.Forms component collection VPKSoft</tags>
   </metadata>

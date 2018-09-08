@@ -774,6 +774,14 @@ namespace VPKSoft.ImageViewer
         {
             this.PreviewKeyDown -= ImageViewer_PreviewKeyDown;
             this.Disposed -= ImageViewer_Disposed;
+
+            // unsubscribe the enabled drag and drop operations on the control..
+            pbMain.DragEnter -= PbMain_DragEnter;
+            pbMain.DragOver -= PbMain_DragOver;
+            pbMain.DragLeave -= PbMain_DragLeave;
+            pbMain.DragDrop -= PbMain_DragDrop;
+            // END: unsubscribe enabled drag and drop operations on the control..
+
         }
         #endregion
 
