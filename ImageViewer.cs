@@ -53,8 +53,81 @@ namespace VPKSoft.ImageViewer
 
             // subscribe the Disposed event to unsubscribe from the non-generated event subscriptions such as this subscription ;-) ..
             this.Disposed += ImageViewer_Disposed;
+
+            // enabled drag and drop operations on the control..
+            pbMain.DragEnter += PbMain_DragEnter;
+            pbMain.DragOver += PbMain_DragOver;
+            pbMain.DragLeave += PbMain_DragLeave;
+            pbMain.DragDrop += PbMain_DragDrop;
+            // END: enabled drag and drop operations on the control..
         }
 
+        #region DragDrop        
+        /// <summary>
+        /// Gets or sets a value indicating whether the control can accept data that the user drags onto it.
+        /// </summary>
+        /// <PermissionSet>
+        ///   <IPermission class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" />
+        ///   <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" />
+        ///   <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence" />
+        ///   <IPermission class="System.Diagnostics.PerformanceCounterPermission, System, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" />
+        /// </PermissionSet>
+        [DefaultValue(false)]
+        [Category("Behavior")]
+        [Browsable(true)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        [Description("Gets or sets a value indicating whether the control can accept data that the user drags onto it.")]
+        public override bool AllowDrop
+        {
+            get => base.AllowDrop;
+
+            set
+            {
+                base.AllowDrop = value;
+                pbMain.AllowDrop = value;
+            }
+        }
+
+        /// <summary>
+        /// Delegates the DragDrop event from the main picture box to the control.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The <see cref="DragEventArgs"/> instance containing the event data.</param>
+        private void PbMain_DragDrop(object sender, DragEventArgs e)
+        {
+            OnDragDrop(e);
+        }
+
+        /// <summary>
+        /// Delegates the DragLeave event from the main picture box to the control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void PbMain_DragLeave(object sender, EventArgs e)
+        {
+            OnDragLeave(e);
+        }
+
+        /// <summary>
+        /// Delegates the DragOver event from the main picture box to the control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void PbMain_DragOver(object sender, DragEventArgs e)
+        {
+            OnDragOver(e);
+        }
+
+        /// <summary>
+        /// Delegates the DragEnter event from the main picture box to the control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void PbMain_DragEnter(object sender, DragEventArgs e)
+        {
+            OnDragEnter(e);
+        }
+        #endregion
 
         #region DelegateMouse
         /// <summary>
