@@ -50,6 +50,7 @@ namespace VPKSoft.VideoBrowser
         public VideoBrowser()
         {
             InitializeComponent();
+
             base.Padding = new Padding(0);
 
             // set the fonts..
@@ -60,6 +61,7 @@ namespace VPKSoft.VideoBrowser
 
             ResizeButtons(); // scale the buttons..
             DoubleBuffered = true; // try to avoid flickering..
+
             UpdateHighlight(); // update the highlighted video details..
         }
 
@@ -71,6 +73,29 @@ namespace VPKSoft.VideoBrowser
 
         // a list of TableLayoutPanel class instances which indicates a video in the video list..
         private List<TableLayoutPanel> panels = new List<TableLayoutPanel>();
+
+        // a list for the container panels on the control..
+        private List<Panel> containerPanels = null;
+
+        /// <summary>
+        /// Gets a list of the container panels on the control.
+        /// </summary>
+        private List<Panel> ContainerPanels
+        {
+            get
+            {
+                // if not assigned yet..
+                if (containerPanels == null)
+                {
+                    // ..create a list of the container panels..
+                    containerPanels = new List<Panel>(new Panel[] { pn01, pn02, pn03, pn04, pn05 });
+                }
+
+                // return the value..
+                return containerPanels;
+            }
+        }
+
         #endregion
 
         #region PublicEvents
@@ -144,7 +169,6 @@ namespace VPKSoft.VideoBrowser
             ClearVideoControls(); // first clear the previous controls from the main TableLayout panel..
 
             DisposeList(); // cleanup.. 
-
 
             // loop though the Videos list..
             foreach (TMDbDetailExt video in Videos)
@@ -293,7 +317,7 @@ namespace VPKSoft.VideoBrowser
             if (lastVideoIndex != VideoIndex)
             {
                 SuspendLayout(); // avoid flickering..
-                int layOutIndex = 1; // the index to start to layout the video item panels..
+                int layOutIndex = 0; // the index to start to layout the video item panels..
                 ClearVideoControls(); // clear the previous detail panels..
 
                 for (int i = VideoIndex; i < VideoIndex + 5; i++) // only five video item panels will be visible at a time..
@@ -305,7 +329,9 @@ namespace VPKSoft.VideoBrowser
                     }
 
                     // add the video item panel to the list..
-                    tlpMain.Controls.Add(panels[i], layOutIndex++, 2);
+                    ContainerPanels[layOutIndex++].Controls.Add(panels[i]);
+
+//                    tlpMain.Controls.Add(panels[i], layOutIndex++, 2);
                 }
                 ResumeLayout(); // END: avoid flickering..
             }
@@ -402,15 +428,10 @@ namespace VPKSoft.VideoBrowser
         private void ClearVideoControls(bool suspend = false)
         {
             SuspendLayout(); // to avoid flickering..
-            foreach (TableLayoutPanel panel in panels)
+
+            foreach (Panel panel in ContainerPanels)
             {
-                foreach (Control control in tlpMain.Controls) // clear the controls..
-                {
-                    if (control.Equals(panel)) // ..that actually resides on the main TableLayoutPanel..
-                    {
-                        tlpMain.Controls.Remove(panel);
-                    }
-                }
+                panel.Controls.Clear();
             }
             ResumeLayout(); // resume the layout again..
         }
@@ -430,6 +451,15 @@ namespace VPKSoft.VideoBrowser
         private void VideoBrowser_Resize(object sender, EventArgs e)
         {
             ResizeButtons(); // ..so re-layout some child controls..
+
+            pnMain.Size = Size; // set the size the control's size..
+
+            // set the location for the main table layout panel..
+            tlpMain.Location = new Point(pnMain.Padding.Left, pnMain.Padding.Top);
+
+            // resize the main table layout panel..
+            Size size =  new Size(new Point(pnMain.Size.Width - pnMain.Padding.Horizontal, pnMain.Size.Height - pnMain.Padding.Vertical));
+            tlpMain.Size = size;            
         }
 
         /// <summary>
@@ -477,11 +507,11 @@ namespace VPKSoft.VideoBrowser
             {
                 if (m.WParamHiWord() > 0)
                 {
-                    VideoDetailIndex++; // user requested the next video's details to be shown..
+                    VideoDetailIndex += JumpAmount; // user requested the next video's details to be shown..
                 }
                 else
                 {
-                    VideoDetailIndex--; // user requested the previous video's details to be shown..
+                    VideoDetailIndex -= JumpAmount; // user requested the previous video's details to be shown..
                 }
             }
             base.WndProc(ref m); // direct to base class..
@@ -495,11 +525,11 @@ namespace VPKSoft.VideoBrowser
         {
             if (e.KeyCode == Keys.Left)
             {
-                VideoDetailIndex--; // user requested the previous video's details to be shown..
+                VideoDetailIndex -= JumpAmount; // user requested the previous video's details to be shown..
             }
             else if (e.KeyCode == Keys.Right)
             {
-                VideoDetailIndex++; // user requested the next video's details to be shown..
+                VideoDetailIndex += JumpAmount; // user requested the next video's details to be shown..
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -530,12 +560,12 @@ namespace VPKSoft.VideoBrowser
 
         private void pnNext_Click(object sender, EventArgs e)
         {
-            VideoDetailIndex++; // user requested the next video's details to be shown..
+            VideoDetailIndex += JumpAmount; // user requested the next video's details to be shown..
         }
 
         private void pnPrevious_Click(object sender, EventArgs e)
         {
-            VideoDetailIndex--; // user requested the previous video's details to be shown..
+            VideoDetailIndex -= JumpAmount; // user requested the previous video's details to be shown..
         }
 
         private void pbAddMovieRequest_Click(object sender, EventArgs e)
@@ -655,7 +685,7 @@ namespace VPKSoft.VideoBrowser
                 // don't allow negative values if there are videos in the list..
                 if (value < 0 && Videos.Count > 0)
                 {
-                    return;
+                    _VideoDetailIndex = 0;
                 }
 
                 // don't allow larger values than there are videos in the list..
@@ -670,12 +700,12 @@ namespace VPKSoft.VideoBrowser
                 // if decreasing and the display list's start index is larger than the detail index..
                 if (dec && VideoIndex > value)
                 {
-                    VideoIndex--; // ..then decrease the list's start index..
+                    VideoIndex -= JumpAmount; // ..then decrease the list's start index..
                 }
                 // if increasing and the display list's end index is smaller than the detail index..
                 else if (!dec && value >= VideoIndex + 5)
                 {
-                    VideoIndex++; // ..then increase the list's start index..
+                    VideoIndex += JumpAmount; // ..then increase the list's start index..
                 }
 
                 // if the value was actually changed, update the list..
@@ -691,6 +721,7 @@ namespace VPKSoft.VideoBrowser
             }
         }
 
+        // a start index from where the video list is shown..
         private int _VideoIndex = 0;
 
         /// <summary>
@@ -766,6 +797,38 @@ namespace VPKSoft.VideoBrowser
             {
                 _Videos = value;
                 ListVideos();
+            }
+        }
+
+        // the value of how many items to jump forward or backward in the list when the list is scrolled..
+        private int _JumpAmount = 1;
+
+        /// <summary>
+        /// Gets or set the value of how many items to jump forward or backward in the list when the list is scrolled.
+        /// </summary>
+        [Browsable(true)]
+        [Description("Gets or set the value of how many items to jump forward or backward in the list when the list is scrolled.")]
+        [Category("Behavior")]
+        [DefaultValue(1)]
+        public int JumpAmount
+        {
+            get
+            {
+                // return the current value..
+                return _JumpAmount;
+            }
+
+            set
+            {
+                // raise an exception if the value is not withing valid range which is from 1 to 5..
+                if (value < 0 || value > 5)
+                {
+                    // an ArgumentOutOfRangeException seems suitable exception for this..
+                    throw new ArgumentOutOfRangeException("The value must be in the range of 1 to 5.");
+                }
+
+                // set the value..
+                _JumpAmount = value;
             }
         }
 

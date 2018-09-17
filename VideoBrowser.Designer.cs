@@ -50,6 +50,11 @@
             this.pbCloseParentForm = new System.Windows.Forms.PictureBox();
             this.pbAddMovieRequest = new System.Windows.Forms.PictureBox();
             this.pnMain = new System.Windows.Forms.Panel();
+            this.pn01 = new System.Windows.Forms.Panel();
+            this.pn03 = new System.Windows.Forms.Panel();
+            this.pn05 = new System.Windows.Forms.Panel();
+            this.pn02 = new System.Windows.Forms.Panel();
+            this.pn04 = new System.Windows.Forms.Panel();
             this.tlpMain.SuspendLayout();
             this.tlpInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPlayBackState)).BeginInit();
@@ -81,7 +86,11 @@
             this.tlpMain.Controls.Add(this.pnLargeContainer, 1, 1);
             this.tlpMain.Controls.Add(this.pnPreviewDescription, 4, 1);
             this.tlpMain.Controls.Add(this.tlpButtons, 6, 1);
-            this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpMain.Controls.Add(this.pn01, 1, 2);
+            this.tlpMain.Controls.Add(this.pn03, 3, 2);
+            this.tlpMain.Controls.Add(this.pn05, 5, 2);
+            this.tlpMain.Controls.Add(this.pn02, 2, 2);
+            this.tlpMain.Controls.Add(this.pn04, 4, 2);
             this.tlpMain.Location = new System.Drawing.Point(12, 12);
             this.tlpMain.Margin = new System.Windows.Forms.Padding(0);
             this.tlpMain.Name = "tlpMain";
@@ -392,6 +401,51 @@
             this.pnMain.Size = new System.Drawing.Size(1023, 580);
             this.pnMain.TabIndex = 1;
             // 
+            // pn01
+            // 
+            this.pn01.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pn01.Location = new System.Drawing.Point(49, 383);
+            this.pn01.Margin = new System.Windows.Forms.Padding(0);
+            this.pn01.Name = "pn01";
+            this.pn01.Size = new System.Drawing.Size(179, 166);
+            this.pn01.TabIndex = 8;
+            // 
+            // pn03
+            // 
+            this.pn03.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pn03.Location = new System.Drawing.Point(407, 383);
+            this.pn03.Margin = new System.Windows.Forms.Padding(0);
+            this.pn03.Name = "pn03";
+            this.pn03.Size = new System.Drawing.Size(179, 166);
+            this.pn03.TabIndex = 10;
+            // 
+            // pn05
+            // 
+            this.pn05.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pn05.Location = new System.Drawing.Point(765, 383);
+            this.pn05.Margin = new System.Windows.Forms.Padding(0);
+            this.pn05.Name = "pn05";
+            this.pn05.Size = new System.Drawing.Size(179, 166);
+            this.pn05.TabIndex = 12;
+            // 
+            // pn02
+            // 
+            this.pn02.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pn02.Location = new System.Drawing.Point(228, 383);
+            this.pn02.Margin = new System.Windows.Forms.Padding(0);
+            this.pn02.Name = "pn02";
+            this.pn02.Size = new System.Drawing.Size(179, 166);
+            this.pn02.TabIndex = 13;
+            // 
+            // pn04
+            // 
+            this.pn04.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pn04.Location = new System.Drawing.Point(586, 383);
+            this.pn04.Margin = new System.Windows.Forms.Padding(0);
+            this.pn04.Name = "pn04";
+            this.pn04.Size = new System.Drawing.Size(179, 166);
+            this.pn04.TabIndex = 14;
+            // 
             // VideoBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -442,5 +496,10 @@
         private System.Windows.Forms.TableLayoutPanel tlpInfo;
         private System.Windows.Forms.PictureBox pbPlayBackState;
         private System.Windows.Forms.Panel pnMain;
+        private System.Windows.Forms.Panel pn01;
+        private System.Windows.Forms.Panel pn03;
+        private System.Windows.Forms.Panel pn05;
+        private System.Windows.Forms.Panel pn02;
+        private System.Windows.Forms.Panel pn04;
     }
 }
