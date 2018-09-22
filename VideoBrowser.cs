@@ -1119,7 +1119,61 @@ namespace VPKSoft.VideoBrowser
             set
             {
                 _ImageAddButton = value;
-                pbAddMovieRequest.Image = value;
+                // condition for the image based if it is visible..
+                pbAddMovieRequest.Image = AddButtonVisible ? value : null;
+            }
+        }
+
+        // a value indicating whether the add something button is visible..
+        private bool _AddButtonVisible = false;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the add something button is visible.
+        /// </summary>
+        [Description("Gets or sets a value indicating whether the add something button is visible.")]
+        [Category("Appearance")]
+        [Browsable(true)]
+        [DefaultValue(false)]
+        public bool AddButtonVisible
+        {
+            get
+            {
+                // just return the value..
+                return _AddButtonVisible;
+            }
+
+            set
+            {
+                // set the value..
+                _AddButtonVisible = value;
+                // depending on the value set the add button's image..
+                pbAddMovieRequest.Image = value ? ImageAddButton : null;
+            }
+        }
+
+        private bool _DeleteButtonVisible = false;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the delete selected item button is visible.
+        /// </summary>
+        [Description("Gets or sets a value indicating whether the delete selected item button is visible.")]
+        [Category("Appearance")]
+        [Browsable(true)]
+        [DefaultValue(false)]
+        public bool DeleteButtonVisible
+        {
+            get
+            {
+                // just return the value..
+                return _DeleteButtonVisible;
+            }
+
+            set
+            {
+                // set the value..
+                _DeleteButtonVisible = value;
+                // depending on the value set the delete button's image..
+                pbDeleteMovie.Image = value ? ImageDeleteButton : null;
             }
         }
 
@@ -1142,7 +1196,8 @@ namespace VPKSoft.VideoBrowser
             set
             {
                 _ImageDeleteButton = value;
-                pbDeleteMovie.Image = value;
+                // condition for the image based if it is visible..
+                pbDeleteMovie.Image = DeleteButtonVisible ? value : null;
             }
         }
 
@@ -1189,6 +1244,33 @@ namespace VPKSoft.VideoBrowser
             {
                 _ImagePreviousButton = value;
                 pnPrevious.BackgroundImage = value;
+            }
+        }
+
+        // a value indicating whether the playback state image indicator is visible..
+        private bool _PlaybackStateImageVisible = true;
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the playback state image indicator is visible.
+        /// </summary>
+        [Description("Gets or sets a value indicating whether the playback state image indicator is visible.")]
+        [Category("Appearance")]
+        [Browsable(true)]
+        [DefaultValue(true)]
+        public bool PlaybackStateImageVisible
+        {
+            get
+            {
+                // just return the value..
+                return _PlaybackStateImageVisible;
+            }
+
+            set
+            {
+                // set the value..
+                _PlaybackStateImageVisible = value;
+                // hide/show the play back state image..
+                pbPlayBackState.Visible = value;
             }
         }
 
